@@ -4,11 +4,12 @@
 class Canvas
 {
     // add private data members
-    int x = 6;
-    int y = 5;
+private:
     char** matrix;
+    int width;
+    int height;
 public:
-    //Canvas(int width, int height);
+    Canvas(int width, int height);
     void DrawCircle(int x, int y, int ray, char ch);
     void FillCircle(int x, int y, int ray, char ch);
     void DrawRect(int left, int top, int right, int bottom, char ch);
