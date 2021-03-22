@@ -18,14 +18,13 @@ int Number::from_base_to_10()
 	int sum = 0;
 	int p = 0;
 	int lungimea = strlen(numarul);
-	printf("%s\n", numarul);
 	for (int i = lungimea - 1; i >= 0; i--)
 	{
 		int aux = transformare_numar(numarul[i]);
 		sum = sum + aux * pow(baza, p);
+		int q = aux * pow(baza, p);
 		p++;
 	}
-	printf("%d\n", sum);
 	return sum;
 }
 int Number::transformare_numar(char x)
@@ -76,6 +75,7 @@ void Number::SwitchBase(int newBase)
 	}
 	baza = newBase;
 	this->numarul = v;
+
 }
 void Number::Print()
 {
@@ -90,7 +90,10 @@ int  Number::GetDigitsCount()
 }
 int  Number::GetBase()
 {
-	return baza;
+	if (baza >= 2 && baza <= 16)
+		return baza;
+	else
+		return -1;
 }
 Number::Number(const char* n)
 {
@@ -111,8 +114,8 @@ void Number::operator=(const char* s) {
 }
 
 void Number::operator=(const Number& n) {
-	baza = n.baza;
-	numarul = n.numarul;
+	this->baza = n.baza;
+	this->numarul = n.numarul;
 }
 void Number::operator=(int n) {
 	Number nr(toString(n), 10);
@@ -125,27 +128,67 @@ Number operator+(Number& x, Number& y)
 	int baza_mai_mare;
 	Number a = x;
 	Number b = y;
+	a.baza = x.baza;
+	b.baza = y.baza;
+	int k = x.GetBase();
 	if (a.GetBase() > b.GetBase())
 		 baza_mai_mare = a.GetBase();
 	else
 		 baza_mai_mare = b.GetBase();
 
-
+	
 	int sum;
-	printf("intram cu a: ");
 	sum = a.from_base_to_10();
-	printf("intram cu b: ");
 	sum = sum + b.from_base_to_10();
-	/*nu imi calculeaza bine from_base_to_10, desi pentru n1,n2,n3 
-	din main, calculeaza bine*/
 
 	
 	char* c = toString(sum);
 	Number newN(c, 10);
-	newN.SwitchBase(baza_mai_mare);
+
+	/*
+	newN.Print();
+	int q= newN.GetBase();
+	printf("q: %d\n", q);
+
+	//newN.SwitchBase(10);
+	//nu-mi merge schimbarea de baza, cand o apelez aici
+
+	int p = newN.GetBase();
+	printf("p: %d\n", p);
+	newN.Print();
+	*/
 
 	return newN;
 }
+Number operator-(Number& x, Number& y)
+{
+	int baza_mai_mare;
+	Number a = x;
+	Number b = y;
+	a.baza = x.baza;
+	b.baza = y.baza;
+	int k = x.GetBase();
+	if (a.GetBase() > b.GetBase())
+		baza_mai_mare = a.GetBase();
+	else
+		baza_mai_mare = b.GetBase();
+
+
+	int dif;
+	dif = a.from_base_to_10();
+	dif = dif - b.from_base_to_10();
+
+	
+	char* c = toString(dif);
+	Number newN(c, 10);
+	
+	return newN;
+}
+void Number::operator--()
+{
+	numarul++;
+}
+
 bool Number::operator>(Number& n)
 {
 	int x = from_base_to_10();

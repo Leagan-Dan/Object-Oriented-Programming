@@ -25,10 +25,21 @@ int main()
 	n1 = n2;
 	printf("n1 = n2: ");
 	n1.Print();
+
 	Number n4("10", 10);
 	Number n5("12", 10);
 	printf("operator+ :\n");
 	n4 = n4 + n5;
 	n4.Print();
+	
+	Number n6("15", 10);
+	Number n7("13", 10);
+	printf("operator- :\n");
+	n6 = n6 - n7;
+	n6.Print();
+
+	--n3;
+	n3.Print();
+
 	return 0;
 }
