@@ -40,6 +40,25 @@ int main()
 
 	--n3;
 	n3.Print();
+	
+	n3--;
+	n3.Print();
 
+	n3.SwitchBase(2);
+	n3 = 9;
+	n3.Print();
+
+	if (n2 > n3)
+	{
+		n2.Print();
+		printf("mai mare decat\n");
+		n3.Print();
+	}
+	else
+	{
+		n2.Print();
+		printf("mai mic");
+		n3.Print();
+	}
 	return 0;
 }

@@ -118,9 +118,8 @@ void Number::operator=(const Number& n) {
 	this->numarul = n.numarul;
 }
 void Number::operator=(int n) {
-	Number nr(toString(n), 10);
-	nr.SwitchBase(baza);
-	*this = nr;
+	numarul = toString(n);
+	this->SwitchBase(baza);
 }
 
 Number operator+(Number& x, Number& y)
@@ -188,13 +187,46 @@ void Number::operator--()
 {
 	numarul++;
 }
-
+void Number::operator--(int n)
+{
+	for (int i = 0; i < strlen(numarul) - 1; i++)
+		x[i] = numarul[i];
+	numarul = x;
+}
 bool Number::operator>(Number& n)
 {
 	int x = from_base_to_10();
 	int y = n.from_base_to_10();
 
 	return x > y;
+}
+bool Number::operator<(Number& n)
+{
+	int x = from_base_to_10();
+	int y = n.from_base_to_10();
+
+	return x < y;
+}
+bool Number::operator>=(Number& n)
+{
+	int x = from_base_to_10();
+	int y = n.from_base_to_10();
+
+	return x >= y;
+}
+bool Number::operator<=(Number& n)
+{
+	int x = from_base_to_10();
+	int y = n.from_base_to_10();
+
+	return x <= y;
+}
+bool Number::operator==(Number& n)
+{
+	int x = from_base_to_10();
+	int y = n.from_base_to_10();
+
+	return x == y;
 }
 char Number::operator[](int i) {
 	return numarul[i];
