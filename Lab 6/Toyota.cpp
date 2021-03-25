@@ -19,9 +19,9 @@ float Toyota::Start(bool& b, int w, int length)
 	float distance = time * speed;
 
 	if (distance > length)
-		b = 0;
-	else
 		b = 1;
+	else
+		b = 0;
 
 	return (time * length / distance);
 

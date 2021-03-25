@@ -24,7 +24,7 @@ void Circuit::Race()
 	for (int i = 0; i < cars; i++)
 	{
 		bool b = false;
-		timpfinal[i] = length / masina[i]->Start(b, weather, length);
+		timpfinal[i] = masina[i]->Start(b, weather, length);
 		aTerminat[i] = b;
 	}
 }
@@ -46,7 +46,7 @@ void Circuit::ShowWhoDidNotFinis()
 		{
 			if (aTerminat[i] == 0)
 			{
-				cout << masina[i]->name << "nu a terminat cursa" << endl;
+				cout << masina[i]->name << " nu a terminat cursa" << endl;
 			}
 		}
 		cout << endl;

@@ -1,5 +1,7 @@
+#include "Car.h"
 #pragma once
-class Mazda
-{
+class Mazda : public Car {
+public:
+	Mazda();
+	float Start(bool&, int, int);
 };
-
